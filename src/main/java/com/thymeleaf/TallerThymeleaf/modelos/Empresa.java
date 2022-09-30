@@ -1,44 +1,66 @@
 package com.thymeleaf.TallerThymeleaf.modelos;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="Empresa")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "nit_Empresa", nullable = false)
-    private Long nit_Empresa;
-    @Column(name="nombreEmpresa",unique = true)
-    private String nombreEmpresa;
-    @Column(name="numeroDocumentoEmpresa",unique = true)
-    private String documentoEmpresa;
-    @Column(name="telefono")
-    private long telefono;
-    @Column(name="direccion")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nombre;
     private String direccion;
+    private String telefono;
+    private String NIT;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="createdAt")
-    private LocalDateTime createdAt;
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="updatedAt")
-    private LocalDateTime updatedAt;
+    public Empresa() {
+    }
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Empleado> empleados;
-    @OneToMany(mappedBy = "empresa")
-    private List<MovimientoDinero> movimientos;
+    public Empresa(String nombre, String direccion, String telefono, String NIT) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.NIT = NIT;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNIT() {
+        return NIT;
+    }
+
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
+    }
 }
