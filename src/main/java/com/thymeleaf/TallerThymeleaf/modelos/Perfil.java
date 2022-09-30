@@ -1,6 +1,5 @@
 package com.thymeleaf.TallerThymeleaf.modelos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,27 +7,23 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Empresa")
-public class Empresa {
+@Table(name="Perfil")
+public class Perfil {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "nit_Empresa", nullable = false)
-    private Long nit_Empresa;
-    @Column(name="nombreEmpresa",unique = true)
-    private String nombreEmpresa;
-    @Column(name="numeroDocumentoEmpresa",unique = true)
-    private String documentoEmpresa;
+    @Column(name = "id_perfil", nullable = false)
+    private String idPerfil;
+    @Column(name="imagen")
+    private String imagen;
     @Column(name="telefono")
-    private long telefono;
-    @Column(name="direccion")
-    private String direccion;
+    private String telefono;
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="createdAt")
@@ -37,8 +32,9 @@ public class Empresa {
     @Column(name="updatedAt")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Empleado> empleados;
-    @OneToMany(mappedBy = "empresa")
-    private List<MovimientoDinero> movimientos;
+    @OneToOne
+    private Empleado empleado;
+
+
+
 }

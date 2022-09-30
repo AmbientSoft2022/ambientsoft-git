@@ -1,6 +1,7 @@
 package com.thymeleaf.TallerThymeleaf.modelos;
 
 
+import com.thymeleaf.TallerThymeleaf.Enums.Tipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,20 +16,18 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Empresa")
-public class Empresa {
+@Table(name="Empleado")
+public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "nit_Empresa", nullable = false)
-    private Long nit_Empresa;
-    @Column(name="nombreEmpresa",unique = true)
-    private String nombreEmpresa;
-    @Column(name="numeroDocumentoEmpresa",unique = true)
-    private String documentoEmpresa;
-    @Column(name="telefono")
-    private long telefono;
-    @Column(name="direccion")
-    private String direccion;
+    @Column(name = "id_empleado", nullable = false)
+    private Long id_empleado;
+    @Column(name="nombreEmpleado")
+    private String nombreEmpleado;
+    @Column(name="correo",unique = true)
+    private String correo;
+    @Column(name="rol")
+    private Tipo rol;
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="createdAt")
@@ -37,8 +36,11 @@ public class Empresa {
     @Column(name="updatedAt")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Empleado> empleados;
-    @OneToMany(mappedBy = "empresa")
+    @OneToOne(mappedBy = "empleado")
+    private Perfil perfil;
+    @ManyToOne
+    private Empresa empresa;
+    @OneToMany(mappedBy = "empleado")
     private List<MovimientoDinero> movimientos;
+
 }

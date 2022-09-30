@@ -1,7 +1,6 @@
 package com.thymeleaf.TallerThymeleaf.controller;
 
 import com.thymeleaf.TallerThymeleaf.modelos.Empresa;
-import com.thymeleaf.TallerThymeleaf.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
